@@ -7,10 +7,15 @@
         http://www.springframework.org/schema/mvc
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
         
-       <bean name="/index" class="controller.IndexController"/>
+    <bean name="/index" class="controller.IndexController"/>
+    <bean name="/notice/list" class="controller.notice.ListController"/>
+    <bean name="/notice/detail" class="controller.notice.ListController"/>
        
        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
        		<property name="prefix" value="/WEB-INF/view/"></property>
        		<property name="suffix" value=".jsp"></property>
        </bean>
+       
+       <!-- css,js,img,,,, -->
+      <mvc:resources location="/resources/" mapping="/**" />
 </beans>
