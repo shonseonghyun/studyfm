@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	hello
+	<h1>WEB-INF안에 넣어서 사용자가 직접요청 불가능하게 하기 </h1>
+	${data }
 </body>
 </html>

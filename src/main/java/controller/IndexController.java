@@ -8,10 +8,13 @@ import org.springframework.web.servlet.mvc.Controller;
 
 public class IndexController implements Controller{
 
+	//이것도 요청
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv=new ModelAndView();
-		mv.setViewName("index.jsp");
+		//이것도 요청
+		mv.addObject("data", "Hello mvc~");
+		mv.setViewName("/WEB-INF/view/index.jsp");
 		return mv;
 	}
 
