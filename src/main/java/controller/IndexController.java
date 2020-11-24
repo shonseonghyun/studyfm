@@ -14,7 +14,7 @@ public class IndexController implements Controller{
 		ModelAndView mv=new ModelAndView();
 		//이것도 요청
 		mv.addObject("data", "Hello mvc~");
-		mv.setViewName("/WEB-INF/view/index.jsp");
+		mv.setViewName("index");
 		return mv;
 	}
 
