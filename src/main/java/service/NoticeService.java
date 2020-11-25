@@ -13,7 +13,7 @@ import java.util.List;
 import entity.Notice;
 
 
-public class NoticeService {
+public class NoticeService implements Service {
 	private String url="jdbc:oracle:thin:@localhost:1521/xe";
 	private String user="SON";
 	private String pwd="7895";

@@ -10,12 +10,13 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import entity.Notice;
 import service.NoticeService;
+import service.Service;
 
 public class ListController implements Controller{
 	
-	private NoticeService noticeservice;
+	private Service noticeservice;
 	
-	public void setNoticeService(NoticeService noticeservice) {
+	public void setNoticeService(Service noticeservice) {
 		this.noticeservice = noticeservice;
 	}
 
