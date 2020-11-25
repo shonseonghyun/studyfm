@@ -13,7 +13,8 @@ public class IndexController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv=new ModelAndView();
 		//이것도 요청
-		mv.setViewName("root.index");
+		mv.addObject("data", "Hello mvc~");
+		mv.setViewName("index");
 		return mv;
 	}
 

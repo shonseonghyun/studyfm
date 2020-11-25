@@ -1,35 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<div id="body">
-		<div class="content-container clearfix">
-
-			<!-- --------------------------- aside --------------------------------------- -->
-			<!-- aside 부분 -->
-			
-
-
-			
-			<!-- --------------------------- main --------------------------------------- -->
-			
-			<!-- content 부분 -->
-			
-	<main class="main">
-		<h2 class="main title">관리자홈</h2>
-		
-		<div class="breadcrumb">
-			<h3 class="hidden">breadlet</h3>
-			<ul>
-				<li>home</li>
-				<li>마이페이지</li>
-				<li>홈</li>
-			</ul>
-		</div>
-		
-		<div class="margin-top first">
-		
-		</div>
-		
-	</main>
-			
-		</div>
-	</div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>WEB-INF안에 넣어서 사용자가 직접요청 불가능하게 하기 </h1>
+	${data }
+</body>
+</html>
