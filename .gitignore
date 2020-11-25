@@ -1,4 +1,4 @@
-*.class
-*.project
-*.settings
-target
+﻿*.class
+*.project/
+.settings/
+target/
