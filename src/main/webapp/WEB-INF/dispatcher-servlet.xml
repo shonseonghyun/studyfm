@@ -9,13 +9,24 @@
         
     <bean name="/index" class="controller.IndexController"/>
     <bean name="/notice/list" class="controller.notice.ListController"/>
-    <bean name="/notice/detail" class="controller.notice.ListController"/>
+    <bean name="/notice/detail" class="controller.notice.DetailController"/>
        
-       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-       		<property name="prefix" value="/WEB-INF/view/"></property>
-       		<property name="suffix" value=".jsp"></property>
-       </bean>
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+	    <property name="order" value="1" />
+	</bean>
+   
+   	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+   		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
+       
+    
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+	</bean>
        
        <!-- css,js,img,,,, -->
-      <mvc:resources location="/resources/" mapping="/**" />
+    <mvc:resources location="/resources/" mapping="/**" />
 </beans>
