@@ -31,5 +31,13 @@
        
        <!-- css,js,img,,,, -->
     <mvc:resources location="/resources/" mapping="/**" />
-    <bean id="noticeservice" class="service.NoticeService" />
+    <bean id="noticeservice" class="service.NoticeService">
+    	<property name="datasource" ref="datasource"></property>
+     </bean>
+     <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+     	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+     	<property name="username" value="SON" />
+     	<property name="password" value="7895" />
+     	<property name="url" value="jdbc:oracle:thin:@localhost:1521/xe" />
+     </bean>
 </beans>

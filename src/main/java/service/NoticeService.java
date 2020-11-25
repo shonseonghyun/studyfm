@@ -10,15 +10,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import entity.Notice;
 
 
 public class NoticeService implements Service {
-	private String url="jdbc:oracle:thin:@localhost:1521/xe";
-	private String user="SON";
-	private String pwd="7895";
-	private String driver="oracle.jdbc.driver.OracleDriver";
+//	private String url="jdbc:oracle:thin:@localhost:1521/xe";
+//	private String user="SON";
+//	private String pwd="7895";
+//	private String driver="oracle.jdbc.driver.OracleDriver";
+	DataSource datasource;
 	
+	public void setDatasource(DataSource datasource) {
+		this.datasource = datasource;
+	}
+
 	public int deleteNoticeAll(int[] ids) {
 		int result=0;
 		String params="";
@@ -32,17 +39,14 @@ public class NoticeService implements Service {
 		}
 		String sql="DELETE NOTICE WHERE ID in ("+params+")";
 		try {
-			Class.forName(driver);
-			Connection con=DriverManager.getConnection(url, user, pwd);
+			 
+			Connection con=datasource.getConnection();
 			Statement st=con.createStatement();
 			result=st.executeUpdate(sql);
 			
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -58,8 +62,8 @@ public class NoticeService implements Service {
 		int result=0;
 		String sql="INSERT INTO NOTICE(TITLE,CONTENT,WRITER_ID,PUB,FILES) VALUES(?,?,?,?,?)";
 		try {
-			Class.forName(driver);
-			Connection con=DriverManager.getConnection(url, user, pwd);
+			 
+			Connection con=datasource.getConnection();
 			PreparedStatement st=con.prepareStatement(sql);
 			st.setString(1,notice.getTitle());
 			st.setString(2, notice.getContent());
@@ -71,9 +75,6 @@ public class NoticeService implements Service {
 			
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,8 +114,8 @@ public class NoticeService implements Service {
 		String sql="SELECT  * FROM (SELECT ROWNUM RNUM,N.* FROM (SELECT * FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC ) N) "
 				+ "WHERE RNUM BETWEEN  ? AND ?";
 		try {
-			Class.forName(driver);
-			Connection con=DriverManager.getConnection(url, user, pwd);
+			 
+			Connection con=datasource.getConnection();
 			PreparedStatement st=con.prepareStatement(sql);
 			
 			st.setString(1, "%"+query+"%");
@@ -139,10 +140,7 @@ public class NoticeService implements Service {
 			rs.close();
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -160,8 +158,8 @@ public class NoticeService implements Service {
 		
 		String sql="SELECT  COUNT(ID) COUNT FROM (SELECT ROWNUM RNUM,N.* FROM (SELECT * FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC ) N) ";
 		try {
-			Class.forName(driver);
-			Connection con=DriverManager.getConnection(url, user, pwd);
+			 
+			Connection con=datasource.getConnection();
 			PreparedStatement st=con.prepareStatement(sql);
 			st.setString(1, "%"+query+"%");
 			ResultSet rs=st.executeQuery();
@@ -171,9 +169,6 @@ public class NoticeService implements Service {
 			rs.close();	
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,8 +180,8 @@ public class NoticeService implements Service {
 		Notice notice=null;
 		String sql="SELECT * FROM NOTICE WHERE ID=?";
 		try {
-			Class.forName(driver);
-			Connection con=DriverManager.getConnection(url, user, pwd);
+			 
+			Connection con=datasource.getConnection();
 			PreparedStatement st=con.prepareStatement(sql);
 			st.setInt(1,id_num );
 			ResultSet rs=st.executeQuery();
@@ -206,10 +201,7 @@ public class NoticeService implements Service {
 			rs.close();
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -223,8 +215,8 @@ public class NoticeService implements Service {
 				+ "(SELECT  RNUM FROM (SELECT ROWNUM RNUM,N.* FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC ) N) WHERE ID=?)";
 		
 		try {
-			Class.forName(driver);
-			Connection con=DriverManager.getConnection(url, user, pwd);
+			 
+			Connection con=datasource.getConnection();
 			PreparedStatement st=con.prepareStatement(sql);
 			st.setInt(1,id_num );
 			ResultSet rs=st.executeQuery();
@@ -244,10 +236,7 @@ public class NoticeService implements Service {
 			rs.close();
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -262,8 +251,8 @@ public class NoticeService implements Service {
 				+ "(SELECT  RNUM FROM (SELECT ROWNUM RNUM,N.* FROM (SELECT * FROM NOTICE ORDER BY REGDATE DESC ) N) WHERE ID=?)";
 		
 		try {
-			Class.forName(driver);
-			Connection con=DriverManager.getConnection(url, user, pwd);
+			 
+			Connection con=datasource.getConnection();
 			PreparedStatement st=con.prepareStatement(sql);
 			st.setInt(1,id_num );
 			ResultSet rs=st.executeQuery();
@@ -283,10 +272,7 @@ public class NoticeService implements Service {
 			rs.close();
 			st.close();
 			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
