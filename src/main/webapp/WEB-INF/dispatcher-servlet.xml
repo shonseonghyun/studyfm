@@ -8,7 +8,9 @@
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
         
     <bean name="/index" class="controller.IndexController"/>
-    <bean name="/notice/list" class="controller.notice.ListController"/>
+    <bean name="/notice/list" class="controller.notice.ListController">
+    	<property name="noticeService" ref="noticeservice"/>
+    </bean>
     <bean name="/notice/detail" class="controller.notice.DetailController"/>
        
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -29,4 +31,5 @@
        
        <!-- css,js,img,,,, -->
     <mvc:resources location="/resources/" mapping="/**" />
+    <bean id="noticeservice" class="service.NoticeService" />
 </beans>

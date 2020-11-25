@@ -3,8 +3,6 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-
-	
   <definition name="index" template="/WEB-INF/view/inc/layout.jsp">
     <put-attribute name="title" value="홈화면" />
     <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
