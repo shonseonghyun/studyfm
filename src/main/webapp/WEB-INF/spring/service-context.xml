@@ -25,4 +25,17 @@
      	<property name="password" value="7895" />
      	<property name="url" value="jdbc:oracle:thin:@localhost:1521/xe" />
      </bean>    
+     
+     
+		
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
+	  <property name="dataSource" ref="datasource" />
+	  <property value="classpath:/mybatis-config.xml" name="configLocation" />
+	  <property value="classpath:mapper/**/*Mapper.xml" name="mapperLocations" />
+	</bean>
+	<!-- sqlsession 객체 생선  -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<qualifier value="s1"></qualifier>
+		<constructor-arg name="sqlSessionFactory" ref="SqlSessionFactory" />
+	</bean>
 </beans>

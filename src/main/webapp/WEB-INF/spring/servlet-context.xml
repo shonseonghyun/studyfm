@@ -35,15 +35,4 @@
     <mvc:annotation-driven />
     
     
-		
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
-	  <property name="dataSource" ref="datasource" />
-	  <property value="classpath:/mybatis-config.xml" name="configLocation" />
-	  <property value="classpath:mapper/**/*Mapper.xml" name="mapperLocations" />
-	</bean>
-	<!-- sqlsession 객체 생선  -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory" ref="SqlSessionFactory" />
-	</bean>
-    
 </beans>
