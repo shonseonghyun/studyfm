@@ -1,16 +1,12 @@
 package controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import entity.Notice;
 import service.NoticeService;
@@ -23,6 +19,7 @@ public class HomeController {
 	
 	@RequestMapping("/index")
 	public String index() {
+		System.out.println("index");
 //		PrintWriter out;
 //		try {
 //			out = response.getWriter();
@@ -32,12 +29,12 @@ public class HomeController {
 //		}
 		return "index";
 	}
-	
+		
 	@RequestMapping("/notice/list")
 	public String noticelist(Model model) {
-		List<Notice> list=noticeservice.getNoticeList("TITLE", "", 1);
+		System.out.println("noticelist");
+		List<Notice> list=noticeservice.getNoticeList();
 		model.addAttribute("list", list);
-		System.out.println("list");
 		return "notice.list";
 	}
 	
@@ -46,6 +43,7 @@ public class HomeController {
 		System.out.println("detail");
 		return "notice.detail";
 	}
+	
 	//이것도 요청
 //	@Override
 //	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
